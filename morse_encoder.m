@@ -18,44 +18,52 @@ function [pulse_seq] = morse_encoder(message)
 
     load("morse.mat","Alpha","Morse");
     message = upper(char(message));
-    result = "";
 
     switch nargout
         case 0
+            result = "";
             for n = 1:strlength(message)
                 switch message(n)
                     case " "
                         result = append(result, "   ");
                     otherwise
                         i = Alpha == message(n);
+                        
                         result = append(result, Morse{i} + " ");
                 end                
             end
             display(result)
         case 1
-            pulse_seq = "";
+            result = [];
+            pulse_seq = [];
             for n = 1:strlength(message)
                 switch message(n)
                     case " "
-                        pulse_seq = append(pulse_seq, "0000");
+                        pulse_seq = [pulse_seq 0 0 0 0];
+                        %pulse_seq = append(pulse_seq, "0000");
                     otherwise
                         i = Alpha == message(n);
                         ms = Morse{i};
 
                         for x = 1:strlength(ms)
                             if ms(x) == '.'
-                                result = append(result, "1");
+                                %result = append(result, "1");
+                                result = [result 1];
                             elseif ms(x) == '-'
-                                result = append(result, "111");
+                                %result = append(result, "111");
+                                result = [result 1 1 1];
                             end
-                            pulse_seq = append(pulse_seq, result);
+                            %pulse_seq = append(pulse_seq, result);
+                            pulse_seq = [pulse_seq result];
                             if x ~= strlength(ms)
-                                pulse_seq = append(pulse_seq, "0");
+                                %pulse_seq = append(pulse_seq, "0");
+                                pulse_seq = [pulse_seq 0];
                             end
-                            result = "";
+                            result = [];
                         end
                         if n ~= strlength(message)
-                            	pulse_seq = append(pulse_seq, "000");
+                            	%pulse_seq = append(pulse_seq, "000");
+                                pulse_seq = [pulse_seq 0 0 0];
                         end
                 end
             end
