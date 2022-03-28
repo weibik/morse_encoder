@@ -40,32 +40,28 @@ function [pulse_seq] = morse_encoder(message)
                 switch message(n)
                     case " "
                         pulse_seq = [pulse_seq 0 0 0 0];
-                        %pulse_seq = append(pulse_seq, "0000");
                     otherwise
                         i = Alpha == message(n);
                         ms = Morse{i};
 
                         for x = 1:strlength(ms)
                             if ms(x) == '.'
-                                %result = append(result, "1");
                                 result = [result 1];
                             elseif ms(x) == '-'
-                                %result = append(result, "111");
                                 result = [result 1 1 1];
                             end
-                            %pulse_seq = append(pulse_seq, result);
                             pulse_seq = [pulse_seq result];
                             if x ~= strlength(ms)
-                                %pulse_seq = append(pulse_seq, "0");
                                 pulse_seq = [pulse_seq 0];
                             end
                             result = [];
                         end
                         if n ~= strlength(message)
-                            	%pulse_seq = append(pulse_seq, "000");
                                 pulse_seq = [pulse_seq 0 0 0];
                         end
                 end
             end
+        case 2
+            error('Too many output arguments')
      end
 end
