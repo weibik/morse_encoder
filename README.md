@@ -17,11 +17,11 @@ MORSE_ENCODER function is used to transform a normal message into a morse code.
                        
  MORSE_BEEP function produces the plot and the sound of the  morse_code
     
-   It take four arguments:
-   pulse_seq is the result of our different function
+  It take four arguments:
+  - pulse_seq is the result of our different function
    (morse_encoder). It is result of the morse code saved as a
    string of 0's and 1's.
 
-   sampling_freq, dot_duration and tone_freq can be simply
+  - sampling_freq, dot_duration and tone_freq can be simply
    understood, because of good variables names. The user can
    experiment with these arguments to make sound different.
