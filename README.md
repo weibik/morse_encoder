@@ -14,8 +14,10 @@ MORSE_ENCODER function is used to transform a normal message into a morse code.
    dot is a 1, dash is 111
    Beetween every sign there is a 0 and beetwen every word
    there is a 0000000.
+   
+   
                        
- MORSE_BEEP function produces the plot and the sound of the  morse_code
+ MORSE_BEEP function produces the plot and the sound of the morse_code
     
   It take four arguments:
   - pulse_seq is the result of our different function
